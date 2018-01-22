@@ -24,7 +24,8 @@ public class SortMain {
                 .filter(dish -> dish.calories < 400)
                 .sorted(Comparator.comparing(dish -> dish.calories))
                 .map(dish -> dish.name)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList())
+                .subList(0, 2);
 
         System.out.println(collect);
 
