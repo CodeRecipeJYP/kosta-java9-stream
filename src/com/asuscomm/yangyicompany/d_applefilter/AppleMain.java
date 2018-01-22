@@ -32,5 +32,9 @@ public class AppleMain {
                 (apple) -> apple.weight > 100);
 
         System.out.println("" + weightFiltered);
+
+        // Class 4 / Consumer
+        weightFiltered.stream()
+                .forEach(apple -> Apple.printAppleInfo(apple, s -> System.out.println(s)));
     }
 }
