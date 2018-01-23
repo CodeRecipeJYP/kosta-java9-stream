@@ -1,10 +1,10 @@
 package com.asuscomm.yangyicompany.f_sort;
 
 public class Dish {
-    String name;
-    boolean vegeterian;
-    int calories;
-    Type type;
+    public String name;
+    public boolean vegeterian;
+    public int calories;
+    public Type type;
 
     public Dish(String name, boolean vegeterian, int calories, Type type) {
         this.name = name;
