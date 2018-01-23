@@ -22,15 +22,23 @@ public class TransactionMain {
 
 
         // Query 1: Find all transactions from year 2011 and sort them by value (small to high).
-        transactions.stream().filter(transaction -> transaction.getYear() >= 2011)
-//                .sorted(Comparator.comparing(Transaction::getValue))
-                .forEachOrdered(System.out::println);
-//                .forEach(System.out::println);
+        System.out.println("");
+        System.out.println("Query 1: Find all transactions from year 2011 and sort them by value (small to high).");
+        transactions.stream().parallel()
+                .filter(transaction -> transaction.getYear() >= 2011)
+                .sorted(Comparator.comparing(Transaction::getValue))
+//                .forEachOrdered(System.out::println);
+                .forEach(System.out::println);
 
 
 
         // Query 2: What are all the unique cities where the traders work?
-
+        System.out.println("");
+        System.out.println("Query 2: What are all the unique cities where the traders work?");
+        transactions.stream().map(Transaction::getTrader)
+                .map(Trader::getCity)
+                .distinct()
+                .forEach(System.out::println);
 
 
 
