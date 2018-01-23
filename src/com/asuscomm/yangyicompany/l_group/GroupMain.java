@@ -22,8 +22,17 @@ public class GroupMain {
                         new Transaction(Currency.JPY, 5700.0),
                         new Transaction(Currency.EUR, 6800.0) );
 
-        Map<Currency, List<Transaction>> collect = transactions.stream().collect(Collectors.groupingBy(Transaction::getCurrency));
+        Map<Currency, List<Transaction>> collect = transactions.stream()
+                .collect(Collectors.groupingBy(Transaction::getCurrency));
+
         System.out.println(collect);
+
+        Map<Currency, Double> collectSumming = transactions.stream()
+                .collect(Collectors.groupingBy(Transaction::getCurrency,
+                        Collectors.summingDouble(Transaction::getValue)));
+
+        System.out.println(collectSumming);
+
     }
 
     public static class Transaction {
