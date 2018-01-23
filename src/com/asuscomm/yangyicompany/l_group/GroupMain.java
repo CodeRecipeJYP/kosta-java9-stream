@@ -27,12 +27,21 @@ public class GroupMain {
 
         System.out.println(collect);
 
+
+        // 통화별로 트랜젝션을 그룹핑하고, 해당 통화의 모든 트랜잭션의 합계를 계산
         Map<Currency, Double> collectSumming = transactions.stream()
                 .collect(Collectors.groupingBy(Transaction::getCurrency,
                         Collectors.summingDouble(Transaction::getValue)));
 
         System.out.println(collectSumming);
 
+        // 통화별로 트랜젝션을 그룹핑하고, 트랜잭션이 5000초과인 경우를 구분하여 분류하기.
+        Map<Currency, Map<Boolean, List<Transaction>>> collectByValue = transactions.stream()
+                .collect(Collectors.groupingBy(Transaction::getCurrency,
+                        Collectors.partitioningBy(tx -> tx.getValue() > 5000)));
+
+
+        System.out.println(collectByValue);
     }
 
     public static class Transaction {
